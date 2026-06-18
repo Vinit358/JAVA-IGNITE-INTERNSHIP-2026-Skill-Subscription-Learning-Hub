@@ -15,9 +15,11 @@
 	Login would be useless
 	Simple flow:
 
-	User - fills form -submits -data saved in DB - account created
+	User - fills form - submits - data saved in DB - account created
 -->
+
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <html>
 <head>
@@ -36,20 +38,27 @@
 
     <h3>Register</h3>
 
+    <!-- show error if email already exists -->
+    <c:if test="${not empty error}">
+        <p style="color:red;">${error}</p>
+    </c:if>
+
     <form action="/register" method="post">
 
-        <!--  enter name -->
+        <!-- enter name -->
         <input type="text" name="name" placeholder="Name">
 
-        <!--  enter email -->
+        <!-- enter email -->
         <input type="text" name="email" placeholder="Email">
 
-        <!--  enter password -->
+        <!-- enter password -->
         <input type="password" name="password" placeholder="Password">
 
         <button type="submit">Register</button>
 
     </form>
+
+    <p>Already have account? <a href="/login">Login here</a></p>
 
 </div>
 

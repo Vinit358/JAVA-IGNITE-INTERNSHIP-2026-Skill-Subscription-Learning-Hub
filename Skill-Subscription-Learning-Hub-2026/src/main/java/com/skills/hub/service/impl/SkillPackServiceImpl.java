@@ -6,6 +6,7 @@ import com.skills.hub.service.SkillPackService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SkillPackServiceImpl implements SkillPackService {
@@ -18,42 +19,36 @@ public class SkillPackServiceImpl implements SkillPackService {
 
     @Override
     public SkillPack addSkillPack(SkillPack pack) {
-
-        // STEP 1: validate input
-        // STEP 2: save to DB
-        // STEP 3: return saved object
-
-        return null;
+        if (pack == null || pack.getTitle().isEmpty()) {
+            return null;
+        }
+        return packRepo.save(pack);
     }
 
     @Override
     public List<SkillPack> getAllPacks() {
-
-        // STEP 1: fetch all packs from DB
-        // STEP 2: return list
-
-        return null;
+        return packRepo.findAll();
     }
 
     @Override
     public SkillPack updateSkillPack(SkillPack pack) {
-
-        // STEP 1: find existing pack by ID
-        // STEP 2: if not found → return null
-        // STEP 3: update fields
-        // STEP 4: save updated pack
-        // STEP 5: return updated pack
-
-        return null;
+        Optional<SkillPack> existing = packRepo.findById(pack.getId());
+        if (!existing.isPresent()) {
+            return null;
+        }
+        SkillPack toUpdate = existing.get();
+        toUpdate.setTitle(pack.getTitle());
+        toUpdate.setDescription(pack.getDescription());
+        toUpdate.setPrice(pack.getPrice());
+        return packRepo.save(toUpdate);
     }
 
     @Override
     public void deleteSkillPack(Long id) {
-
-        // STEP 1: delete pack by ID
+        packRepo.deleteById(id);
     }
 
-	public SkillPackRepository getPackRepo() {
-		return packRepo;
-	}
+    public SkillPackRepository getPackRepo() {
+        return packRepo;
+    }
 }

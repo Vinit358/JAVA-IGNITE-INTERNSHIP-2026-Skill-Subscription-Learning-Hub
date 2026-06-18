@@ -1,22 +1,23 @@
 <!--
 	Why it is used:
 
-This page shows available training packs / courses / subscription plans.
+	This page shows available training packs / courses / subscription plans.
 
-What it does:
-Displays list of courses or packages
-Shows price, duration, features
-Lets user choose a plan
-Why it is needed:
+	What it does:
+	Displays list of courses or packages
+	Shows price, duration, features
+	Lets user choose a plan
+	Why it is needed:
 
-This is the main business page of your system:
+	This is the main business page of your system:
 
-It converts users into customers
-Helps users decide what to buy/enroll
-Simple flow:
+	It converts users into customers
+	Helps users decide what to buy/enroll
+	Simple flow:
 
-User - logs in -views packs - selects a plan
+	User - logs in - views packs - selects a plan
 -->
+
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
@@ -37,24 +38,29 @@ User - logs in -views packs - selects a plan
 
     <h3>All Courses</h3>
 
-    <!--  loop skill packs -->
+    <!-- show message if no packs exist -->
+    <c:if test="${empty packs}">
+        <p>No skill packs available right now.</p>
+    </c:if>
+
+    <!-- loop skill packs -->
     <c:forEach var="pack" items="${packs}">
 
         <div class="card">
 
-            <!--  show title -->
+            <!-- show title -->
             <h4>${pack.title}</h4>
 
-            <!--  show description -->
+            <!-- show description -->
             <p>${pack.description}</p>
 
-            <!--  show price -->
+            <!-- show price -->
             <b>₹ ${pack.price}</b>
 
             <br><br>
 
-            <!-- subscribe action -->
-            <a href="/subscribe?userId=1&packId=${pack.id}">
+            <!-- subscribe action — userId comes from session -->
+            <a href="/subscribe?userId=${sessionScope.loggedUser.id}&packId=${pack.id}">
                 Subscribe
             </a>
 

@@ -16,36 +16,57 @@
 	Activates access after selection
 	Simple flow:
 
-	User selects pack- comes here - confirms -subscription saved
+	User selects pack - comes here - confirms - subscription saved
 -->
+
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <html>
+<head>
+    <title>My Subscriptions</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
 <body>
 
-<h2>My Subscriptions</h2>
+<div class="header">
+    <img src="/images/logo.png">
+    <h2>My Subscriptions</h2>
+</div>
 
-<table border="1">
+<div class="container">
 
-<tr>
-    <th>Skill Pack</th>
-    <th>Start Date</th>
-    <th>End Date</th>
-    <th>Status</th>
-</tr>
+    <h2>My Subscriptions</h2>
 
-<c:forEach var="s" items="${subs}">
+    <!-- show message if no subscriptions -->
+    <c:if test="${empty subs}">
+        <p>You have not subscribed to any pack yet.</p>
+    </c:if>
 
-<tr>
-    <td>${s.skillPack.title}</td>
-    <td>${s.startDate}</td>
-    <td>${s.endDate}</td>
-    <td>${s.status}</td>
-</tr>
+    <!-- show subscriptions table -->
+    <c:if test="${not empty subs}">
+        <table border="1">
 
-</c:forEach>
+            <tr>
+                <th>Skill Pack</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Status</th>
+            </tr>
 
-</table>
+            <c:forEach var="s" items="${subs}">
+                <tr>
+                    <td>${s.skillPack.title}</td>
+                    <td>${s.startDate}</td>
+                    <td>${s.endDate}</td>
+                    <td>${s.status}</td>
+                </tr>
+            </c:forEach>
+
+        </table>
+    </c:if>
+
+</div>
 
 </body>
 </html>

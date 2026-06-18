@@ -1,20 +1,35 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <html>
+<head>
+    <title>Add Skill Pack</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
 <body>
 
-<h2>Add Skill Pack</h2>
+<div class="header">
+    <img src="/images/logo.png">
+    <h2>Skill Subscription Hub</h2>
+</div>
 
-<form action="/add-pack" method="post">
+<div class="container">
 
-    Title: <input type="text" name="title"/> <br><br>
-    Description: <input type="text" name="description"/> <br><br>
-    Price: <input type="text" name="price"/> <br><br>
+    <h2>Add Skill Pack</h2>
 
-    <button type="submit">Save</button>
+    <form action="/add-pack" method="post">
 
-</form>
+        Title:       <input type="text" name="title"/>       <br><br>
+        Description: <input type="text" name="description"/> <br><br>
+        Price:       <input type="text" name="price"/>       <br><br>
 
-<a href="/packs">Back</a>
+        <button type="submit">Save</button>
+
+    </form>
+
+    <a href="/packs">Back</a>
+
+</div>
 
 </body>
 </html>
-

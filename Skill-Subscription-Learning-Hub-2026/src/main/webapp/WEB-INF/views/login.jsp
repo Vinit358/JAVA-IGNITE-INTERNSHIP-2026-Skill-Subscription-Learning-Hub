@@ -17,11 +17,11 @@
 	Starts the user session
 	Simple flow:
 
-	User - enters details - click login -backend verifies -success/fail
-	
+	User - enters details - click login - backend verifies - success/fail
 -->
 
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <html>
 <head>
@@ -41,6 +41,11 @@
 <div class="container">
 
     <h3>Login</h3>
+
+    <!-- show error if login fails -->
+    <c:if test="${not empty error}">
+        <p style="color:red;">${error}</p>
+    </c:if>
 
     <form action="/login" method="post">
 

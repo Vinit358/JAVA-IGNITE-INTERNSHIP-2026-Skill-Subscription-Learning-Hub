@@ -23,5 +23,5 @@ User <-> SkillPack
 public interface SubscriptionRepository extends JpaRepository<Subscription, Long> {
 
     // Get all subscriptions for a specific user
-    List<Subscription> findByUser(User user);
+    List<Subscription> findByUserId(Long userId);
 }
